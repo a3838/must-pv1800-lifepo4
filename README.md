@@ -20,15 +20,15 @@ docker run -d --device=/dev/ttyUSB0 -e MUST_Config__Cron='0/30 * * * * ?' -e MUS
 version: "3"
 services:
   must-pv1800:
-    image: doink/must-pv1800
-    hostname: must-pv1800
-    container_name: must-pv1800
+    image: a3838/must-pv1800-lifepo4
+    hostname: must-pv1800-lifepo4
+    container_name: must-pv1800-lifepo4
     restart: always
     environment:
       MUST_Config__Cron: "0/2 * * * * ?"
       MUST_Config__IsTest: false
       MUST_Config__PortName: "/dev/ttyUSB0"
-      MUST_CONFIG__MqttServer: 191.323.23.23
+      MUST_CONFIG__MqttServer: 191.168.0.14
       MUST_Serilog__MinimumLevel: "INFO"
     devices:
       - /dev/ttyUSB0:/dev/ttyUSB0:rwm
