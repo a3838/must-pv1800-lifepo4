@@ -79,7 +79,13 @@ public static class MqttHelper
         new RegisterTopic { Name = "AccumulatedSelfusePower", UnitOfMeasurement = "kWh", Icon = "chart-bell-curve-cumulative", DeviceClass = "energy", StateClass = "total_increasing" },
         new RegisterTopic { Name = "AccumulatedPvsellPower", UnitOfMeasurement = "kWh", Icon = "chart-bell-curve-cumulative", DeviceClass = "energy", StateClass = "total_increasing" },
         new RegisterTopic { Name = "AccumulatedGridChargerPower", UnitOfMeasurement = "kWh", Icon = "chart-bell-curve-cumulative", DeviceClass = "energy", StateClass = "total_increasing" },
-        new RegisterTopic { Name = "AccumulatedPvPower", UnitOfMeasurement = "kWh", Icon = "chart-bell-curve-cumulative", DeviceClass = "energy", StateClass = "total_increasing" }
+        new RegisterTopic { Name = "AccumulatedPvPower", UnitOfMeasurement = "kWh", Icon = "chart-bell-curve-cumulative", DeviceClass = "energy", StateClass = "total_increasing" },
+        new RegisterTopic { Name = "BatteryVoltageC", UnitOfMeasurement = "V", Icon = "current-dc", DeviceClass="voltage", StateClass="measurement"  },
+        new RegisterTopic { Name = "BatteryStopDischargingVoltage", UnitOfMeasurement = "V", Icon = "current-dc", DeviceClass="voltage", StateClass="measurement"  },
+        new RegisterTopic { Name = "BatteryStopChargingVoltage", UnitOfMeasurement = "V", Icon = "current-dc", DeviceClass="voltage", StateClass="measurement"  },
+        new RegisterTopic { Name = "BatteryLowVoltage", UnitOfMeasurement = "V", Icon = "current-dc", DeviceClass="voltage", StateClass="measurement"  },
+        new RegisterTopic { Name = "BatteryHighVoltage", UnitOfMeasurement = "V", Icon = "current-dc", DeviceClass="voltage", StateClass="measurement"  },
+        new RegisterTopic { Name = "ChrBatteryLowVoltage", UnitOfMeasurement = "V", Icon = "current-dc", DeviceClass="voltage", StateClass="measurement"  }
     };
 
     public static readonly JsonSerializerOptions SerializeOptions = new()
