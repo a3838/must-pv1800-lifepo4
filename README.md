@@ -1,8 +1,8 @@
-# Must EP1800
+# Must PV1800 for LiFePO4
 
 This is a project to get JSON information from Must EP1800
 
-This is different enough to not fork but most code comes from [github](https://github.com/dylangmiles/docker-must-homeassistant)
+This is different enough to not fork but most code comes from [github](https://github.com/jacokok/must-ep1800)
 
 ## Docker
 
@@ -11,7 +11,7 @@ Make sure the user has permissions to access /dev/ttyUSB0. Could also run in pri
 ```bash
 sudo usermod -a -G dialout $USER # might have to logout or reboot after this
 # Run every 30 seconds
-docker run -d --device=/dev/ttyUSB0 -e MUST_Config__Cron='0/30 * * * * ?' -e MUST_CONFIG__MqttServer='serverNameOrIP' -e MUST_CONFIG__MqttUserName='username' -e MUST_CONFIG__MqttPassword='pass' doink/must-ep1800
+docker run -d --device=/dev/ttyUSB0 -e MUST_Config__Cron='0/30 * * * * ?' -e MUST_CONFIG__MqttServer='serverNameOrIP' -e MUST_CONFIG__MqttUserName='username' -e MUST_CONFIG__MqttPassword='pass' doink/must-pv1800
 ```
 
 ## Docker Compose
@@ -19,10 +19,10 @@ docker run -d --device=/dev/ttyUSB0 -e MUST_Config__Cron='0/30 * * * * ?' -e MUS
 ```yaml
 version: "3"
 services:
-  must-ep1800:
-    image: doink/must-ep1800
-    hostname: must-ep1800
-    container_name: must-ep1800
+  must-pv1800:
+    image: doink/must-pv1800
+    hostname: must-pv1800
+    container_name: must-pv1800
     restart: always
     environment:
       MUST_Config__Cron: "0/2 * * * * ?"

@@ -98,7 +98,7 @@ public static class MqttHelper
     public static List<PublishPayload> JsonToPublishList(string json)
     {
         List<PublishPayload> results = new();
-        EP1800? model = JsonSerializer.Deserialize<EP1800>(json);
+        PV1800? model = JsonSerializer.Deserialize<PV1800>(json);
         if (model == null)
         {
             return results;

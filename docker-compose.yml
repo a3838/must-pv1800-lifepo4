@@ -1,9 +1,9 @@
 version: "3"
 services:
-  must-ep1800:
-    image: localhost/must-ep1800
-    hostname: must-ep1800
-    container_name: must-ep1800
+  must-pv1800:
+    image: localhost/must-pv1800
+    hostname: must-pv1800
+    container_name: must-pv1800
     restart: always
     environment:
       MUST_Config__Cron: "0/2 * * * * ?"

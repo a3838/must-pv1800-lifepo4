@@ -8,7 +8,7 @@ namespace Must.Models
     /// <summary>
     /// The sensor definitions of the EP1800 series of inverters manufactured by Must Solar.
     /// </summary>
-    public partial class EP1800
+    public partial class PV1800
     {
 
 

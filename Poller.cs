@@ -37,7 +37,7 @@ public class Poller
             var reader = new ModbusReader(wrapper);
 
             ushort[] values;
-            EP1800 model = new();
+            PV1800 model = new();
 
             values = ReadValues(reader, port, 4, 10001, 8);
             SensorToModelMapper.Map(10001, values, model);
@@ -57,7 +57,7 @@ public class Poller
             values = ReadValues(reader, port, 4, 25201, 79);
             SensorToModelMapper.Map(25201, values, model);
 
-            var json = JsonSerializer.Serialize<EP1800>(model, new JsonSerializerOptions()
+            var json = JsonSerializer.Serialize<PV1800>(model, new JsonSerializerOptions()
             {
                 DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
                 WriteIndented = true,
