@@ -61,7 +61,7 @@ namespace Must.Models
             
             for (int i = 0; i < voltageGrades.Length; i++)
             {
-                if (voltageGrades[i, 0] >=  currentVoltage || currentVoltage < voltageGrades[i, 1]) {
+                if (voltageGrades[i, 0] >=  currentVoltage && currentVoltage < voltageGrades[i, 1]) {
 
                    coeficient =  (voltageGrades[i, 0] - voltageGrades[i, 1])/(voltageGrades[i, 2] - voltageGrades[i, 3]);
 
