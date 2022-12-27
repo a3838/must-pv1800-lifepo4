@@ -17,9 +17,6 @@ namespace Must.Models
                 }
 
                 var batteryVoltage = this.BatteryVoltage.Value;
-                //var batteryVoltageGrade = this.BattVoltageGrade.Value;
-                //var batteryCellCount = batteryVoltageGrade / 2; // Assume 2 volt cells. So a 12 volt battery will have 6 cells.
-                //var cellVoltage = batteryVoltage / batteryCellCount;
                 var batteryMode = this.WorkStateNo == 2; // In battery mode. Battery is being used
                 var charging = this.ChrWorkstateNo == 2; // Battery is being charged
                 var batteryLoaded = batteryMode && !charging; // Load is supported by battery with no charging
@@ -34,28 +31,13 @@ namespace Must.Models
                     {
                         return null;
                     }
-                    /*
-                    var loadPercentage = this.LoadPercent.Value;
-
-                    if (loadPercentage < 20)
-                    {
-                        return CalculateBatteryPercent(1.701d, 2.033d, 0.083, 4, cellVoltage);
-                    }
-
-                    if (loadPercentage < 50)
-                    {
-                        return CalculateBatteryPercent(1.651d, 1.983d, 0.083, 4, cellVoltage);
-                    }
-
-                    return CalculateBatteryPercent(1.551d, 1.883d, 0.083, 4, cellVoltage);
-                    */
+                    
                     return CalculateBatteryPercent(batteryVoltage);
                 }
 
                 // We are charging
                 if (!batteryLoaded)
                 {
-                    //return CalculateBatteryPercent(1.917d, 2.25d, 0.083, 4, cellVoltage);
                     return CalculateBatteryPercent(batteryVoltage);
                 }
 
@@ -63,9 +45,10 @@ namespace Must.Models
             }
         }
 
-        //private static short CalculateBatteryPercent(double lower, double upper, double interval, int intervals, double currentVoltage)
         private static short CalculateBatteryPercent(double currentVoltage)
         {
+            // by information from https://footprinthero.com/lifepo4-battery-voltage-charts
+            // for 24v LiFePO4 battery  
             double[,] voltageGrades = new double[5,4] { 
                 { 29.2, 26.9, 100.0, 99.0}, 
                 { 26.9, 25.6,  99.0, 17.0},
@@ -78,31 +61,14 @@ namespace Must.Models
             
             for (int i = 0; i < voltageGrades.Length; i++)
             {
-                if (voltageGrades[i, 0] >  currentVoltage || currentVoltage <= voltageGrades[i, 1]) {
+                if (voltageGrades[i, 0] >=  currentVoltage || currentVoltage < voltageGrades[i, 1]) {
 
                    coeficient =  (voltageGrades[i, 0] - voltageGrades[i, 1])/(voltageGrades[i, 2] - voltageGrades[i, 3]);
-                   // we have delta by voltage is 1.3v and delta by percentage 82%, 
-                   return  ((short)Math.Round((currentVoltage - voltageGrades[i, 1])/coeficient, 0));
+
+                   return  ((short)Math.Round(voltageGrades[i, 3] + (currentVoltage - voltageGrades[i, 1])/coeficient, 0));
                 }
             }
-/*
-            if (cellVoltage >= upper) return 100;
 
-            var threshold = upper;
-            var percentageBase = 100d;
-            var percentageInterval = 100d / (double)intervals;
-            for (var level = 0; level < intervals; level++)
-            {
-                threshold -= (level * interval);
-                percentageBase -= (level * percentageInterval);
-
-                if (cellVoltage >= threshold)
-                {
-                    return (short)(percentageBase + Math.Round(percentageInterval * (cellVoltage - threshold) / interval, 0,
-                        MidpointRounding.AwayFromZero));
-                }
-            }
-*/
             return 100;
         }
 
