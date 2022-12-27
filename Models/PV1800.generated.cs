@@ -380,10 +380,6 @@ PV energy and grid can charge batteries.
         [SensorInterpretation("current-dc", "Vdc-batt")]
         public System.Double? BatteryVoltage { get; set; }
 
-        [ModbusSensor(25205, 0.01d, true)]
-        [SensorInterpretation("current-dc", "Vdc-batt")]
-        public System.Double? BatteryVoltageAlt { get; set; }
-
         [ModbusSensor(25206, 0.10d, true)]
         [SensorInterpretation("current-ac", "Vac")]
         public System.Double? InverterVoltage { get; set; }

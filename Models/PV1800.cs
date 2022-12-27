@@ -60,8 +60,28 @@ namespace Must.Models
             }
         }
 
-        private static short CalculateBatteryPercent(double lower, double upper, double interval, int intervals, double cellVoltage)
+        private static short CalculateBatteryPercent(double lower, double upper, double interval, int intervals, double currentVoltage)
         {
+            double[,] voltageGrades = new double[5,4] { 
+                { 29.2, 26.9, 100.0, 99.0}, 
+                { 26.9, 25.6,  99.0, 17.0},
+                { 25.6, 25.0,  17.0, 14.0},
+                { 25.0, 24.0,  14.0,  9.0},
+                { 24.0, 20.0,   9.0,  0.0}
+            };
+
+            var coeficient = (double) 1.0;
+            
+            for (int i = 0; i < voltageGrades.Length; i++)
+            {
+                if (voltageGrades[i, 0] >  currentVoltage || currentVoltage <= voltageGrades[i, 1]) {
+
+                   coeficient =  (voltageGrades[i, 0] - voltageGrades[i, 1])/(voltageGrades[i, 2] - voltageGrades[i, 3]);
+                   // we have delta by voltage is 1.3v and delta by percentage 82%, 
+                   return  ((short)Math.Round((currentVoltage - voltageGrades[i, 1])/coeficient, 0));
+                }
+            }
+/*
             if (cellVoltage >= upper) return 100;
 
             var threshold = upper;
@@ -78,8 +98,8 @@ namespace Must.Models
                         MidpointRounding.AwayFromZero));
                 }
             }
-
-            return 0;
+*/
+            return 100;
         }
 
         [SensorInterpretation("chart-bell-curve-cumulative", "KWH")]

@@ -10,7 +10,6 @@ public static class MqttHelper
         new RegisterTopic { Name = "AcVoltageGrade", UnitOfMeasurement = "V", Icon = "current-ac", DeviceClass="voltage", StateClass="measurement" },
         new RegisterTopic { Name = "RatedPower", UnitOfMeasurement = "VA", Icon = "lightbulb-outline", DeviceClass="apparent_power", StateClass="measurement" },
         new RegisterTopic { Name = "BatteryVoltage", UnitOfMeasurement = "V", Icon = "current-dc", DeviceClass="voltage", StateClass="measurement" },
-        new RegisterTopic { Name = "BatteryVoltageAlt", UnitOfMeasurement = "V", Icon = "current-dc", DeviceClass="voltage", StateClass="measurement" },
         new RegisterTopic { Name = "InverterVoltage", UnitOfMeasurement = "V", Icon = "current-ac", DeviceClass="voltage", StateClass="measurement" },
         new RegisterTopic { Name = "GridVoltage", UnitOfMeasurement = "V", Icon = "current-ac", DeviceClass="voltage", StateClass="measurement" },
         new RegisterTopic { Name = "BusVoltage", UnitOfMeasurement = "V", Icon = "cog-transfer-outline", DeviceClass="voltage", StateClass="measurement" },

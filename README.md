@@ -18,7 +18,7 @@ sudo docker build -t must-pv1800-lifepo4 .
 sudo usermod -a -G dialout $USER # might have to logout or reboot after this
 
 # Run every 5 seconds
-docker run -d --restart=always --device=/dev/ttyUSB0 -e MUST_Config__Cron='0/5 * * * * ?' -e MUST_CONFIG__MqttServer='serverNameOrIP' -e MUST_CONFIG__MqttUserName='username' -e MUST_CONFIG__MqttPassword='pass' must-pv1800-lifepo4
+docker run -d --restart=always --name=must=pv1800 --device=/dev/ttyUSB0 -e MUST_Config__Cron='0/5 * * * * ?' -e MUST_CONFIG__MqttServer='serverNameOrIP' -e MUST_CONFIG__MqttUserName='username' -e MUST_CONFIG__MqttPassword='pass' must-pv1800-lifepo4
 
 ```
 
