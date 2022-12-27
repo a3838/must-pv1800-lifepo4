@@ -17,9 +17,9 @@ namespace Must.Models
                 }
 
                 var batteryVoltage = this.BatteryVoltage.Value;
-                var batteryVoltageGrade = this.BattVoltageGrade.Value;
-                var batteryCellCount = batteryVoltageGrade / 2; // Assume 2 volt cells. So a 12 volt battery will have 6 cells.
-                var cellVoltage = batteryVoltage / batteryCellCount;
+                //var batteryVoltageGrade = this.BattVoltageGrade.Value;
+                //var batteryCellCount = batteryVoltageGrade / 2; // Assume 2 volt cells. So a 12 volt battery will have 6 cells.
+                //var cellVoltage = batteryVoltage / batteryCellCount;
                 var batteryMode = this.WorkStateNo == 2; // In battery mode. Battery is being used
                 var charging = this.ChrWorkstateNo == 2; // Battery is being charged
                 var batteryLoaded = batteryMode && !charging; // Load is supported by battery with no charging
@@ -34,7 +34,7 @@ namespace Must.Models
                     {
                         return null;
                     }
-
+                    /*
                     var loadPercentage = this.LoadPercent.Value;
 
                     if (loadPercentage < 20)
@@ -48,19 +48,23 @@ namespace Must.Models
                     }
 
                     return CalculateBatteryPercent(1.551d, 1.883d, 0.083, 4, cellVoltage);
+                    */
+                    return CalculateBatteryPercent(batteryVoltage);
                 }
 
                 // We are charging
                 if (!batteryLoaded)
                 {
-                    return CalculateBatteryPercent(1.917d, 2.25d, 0.083, 4, cellVoltage);
+                    //return CalculateBatteryPercent(1.917d, 2.25d, 0.083, 4, cellVoltage);
+                    return CalculateBatteryPercent(batteryVoltage);
                 }
 
                 return null;
             }
         }
 
-        private static short CalculateBatteryPercent(double lower, double upper, double interval, int intervals, double currentVoltage)
+        //private static short CalculateBatteryPercent(double lower, double upper, double interval, int intervals, double currentVoltage)
+        private static short CalculateBatteryPercent(double currentVoltage)
         {
             double[,] voltageGrades = new double[5,4] { 
                 { 29.2, 26.9, 100.0, 99.0}, 
