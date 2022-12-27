@@ -9,9 +9,17 @@ This is different enough to not fork but most code comes from [github](https://g
 Make sure the user has permissions to access /dev/ttyUSB0. Could also run in privileged but not recommended.
 
 ```bash
+git clone https://github.com/a3838/must-pv1800-lifepo4.git /opt/must-pv1800-lifepo4
+
+cd /opt/must-pv1800-lifepo4
+
+sudo docker build -t must-pv1800-lifepo4 .
+
 sudo usermod -a -G dialout $USER # might have to logout or reboot after this
-# Run every 30 seconds
-docker run -d --device=/dev/ttyUSB0 -e MUST_Config__Cron='0/30 * * * * ?' -e MUST_CONFIG__MqttServer='serverNameOrIP' -e MUST_CONFIG__MqttUserName='username' -e MUST_CONFIG__MqttPassword='pass' doink/must-pv1800
+
+# Run every 5 seconds
+docker run -d --restart=always --device=/dev/ttyUSB0 -e MUST_Config__Cron='0/5 * * * * ?' -e MUST_CONFIG__MqttServer='serverNameOrIP' -e MUST_CONFIG__MqttUserName='username' -e MUST_CONFIG__MqttPassword='pass' must-pv1800-lifepo4
+
 ```
 
 ## Docker Compose
@@ -19,13 +27,13 @@ docker run -d --device=/dev/ttyUSB0 -e MUST_Config__Cron='0/30 * * * * ?' -e MUS
 ```yaml
 version: "3"
 services:
-  must-pv1800:
-    image: a3838/must-pv1800-lifepo4
+  must-pv1800-lifepo4:
+    image: must-pv1800-lifepo4
     hostname: must-pv1800-lifepo4
     container_name: must-pv1800-lifepo4
     restart: always
     environment:
-      MUST_Config__Cron: "0/2 * * * * ?"
+      MUST_Config__Cron: "0/5 * * * * ?"
       MUST_Config__IsTest: false
       MUST_Config__PortName: "/dev/ttyUSB0"
       MUST_CONFIG__MqttServer: 191.168.0.14
