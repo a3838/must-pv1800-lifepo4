@@ -29,7 +29,7 @@ public static class SensorToModelMapper
                 if (attribute?.Coefficient == 1) {
                     property.SetValue(model, value);      
                 } else {
-                    property.SetValue(model, value * attribute?.Coefficient);
+                    property.SetValue(model, Math.Truncate((value * (attribute?.Coefficient ?? 0))*100)/100 );
                 }
             }
 
