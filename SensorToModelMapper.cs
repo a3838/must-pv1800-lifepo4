@@ -26,7 +26,11 @@ public static class SensorToModelMapper
 
             if (property.PropertyType == typeof(double?))
             {
-                property.SetValue(model, value * attribute?.Coefficient);
+                if (attribute?.Coefficient == 1) {
+                    property.SetValue(model, value);      
+                } else {
+                    property.SetValue(model, value * attribute?.Coefficient);
+                }
             }
 
             if (property.PropertyType == typeof(short?))

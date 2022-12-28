@@ -50,8 +50,8 @@ namespace Must.Models
             // by information from https://footprinthero.com/lifepo4-battery-voltage-charts
             // for 24v LiFePO4 battery  
             double[,] voltageGrades = new double[5,4] { 
-                { 29.2, 26.9, 100.0, 99.0}, 
-                { 26.9, 25.6,  99.0, 17.0},
+                { 29.2, 26.4, 100.0, 99.0}, 
+                { 26.4, 25.6,  99.0, 17.0},
                 { 25.6, 25.0,  17.0, 14.0},
                 { 25.0, 24.0,  14.0,  9.0},
                 { 24.0, 20.0,   9.0,  0.0}
