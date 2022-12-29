@@ -26,6 +26,7 @@ public static class SensorToModelMapper
 
             if (property.PropertyType == typeof(double?))
             {
+                // truncate
                 property.SetValue(model, Math.Truncate((value * (attribute?.Coefficient ?? 0))*100)/100 );
             }
 
