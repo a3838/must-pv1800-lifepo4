@@ -58,7 +58,7 @@ namespace Must.Models
 
             var coeficient = (double) 1.0;
             
-            for (int i = 0; i < voltageGrades.Length; i++)
+            for (int i = 0; i < 4; i++)
             {
                 if (voltageGrades[i, 0] >=  currentVoltage & currentVoltage > voltageGrades[i, 1]) {
 
