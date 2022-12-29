@@ -6,6 +6,10 @@ namespace Must.Mqtt;
 public static class MqttHelper
 {
     public static readonly List<RegisterTopic> Topics = new() {
+        
+        new RegisterTopic { Name = "BatteryPercentByCapacity", UnitOfMeasurement = "%", Icon = "battery" },
+        new RegisterTopic { Name = "DischarginPower", UnitOfMeasurement = "kWh", Icon = "chart-bell-curve-cumulative", DeviceClass = "energy", StateClass = "measurement" },
+
         new RegisterTopic { Name = "WorkStateNo", UnitOfMeasurement = "", Icon = "state-machine" },
         new RegisterTopic { Name = "AcVoltageGrade", UnitOfMeasurement = "V", Icon = "current-ac", DeviceClass="voltage", StateClass="measurement" },
         new RegisterTopic { Name = "RatedPower", UnitOfMeasurement = "VA", Icon = "lightbulb-outline", DeviceClass="apparent_power", StateClass="measurement" },

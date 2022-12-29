@@ -366,7 +366,18 @@ PV energy and grid can charge batteries.
 
 "
         )]
-        public System.Int16? WorkStateNo { get; set; }
+        public System.Int16? WorkStateNo { 
+            get
+            {
+                return this.WorkStateNo;        
+            } 
+
+            set 
+            {
+                this.WorkStateNo = value;
+                SetCharginStatus = value;
+            }
+        }
 
         [ModbusSensor(25202, 1.00d, true)]
         [SensorInterpretation("current-ac", "Vac")]

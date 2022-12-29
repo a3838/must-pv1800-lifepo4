@@ -33,7 +33,7 @@ public static class SensorToModelMapper
 
             if (property.PropertyType == typeof(short?))
             {
-                property.SetValue(model, (short)(value * attribute?.Coefficient ?? 0));
+                property.SetValue(model, (short)(Math.Truncate((value * (attribute?.Coefficient ?? 0))*100)/100));
             }
 
             index++;
