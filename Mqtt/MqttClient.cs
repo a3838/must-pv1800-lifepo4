@@ -50,7 +50,8 @@ public class MqttClient
                     Icon = $"mdi:{topic.Icon}",
                     UnitOfMeasurement = topic.UnitOfMeasurement,
                     DeviceClass = topic.DeviceClass,
-                    StateClass = topic.StateClass
+                    StateClass = topic.StateClass,
+                    UniqueId = $"id_{_config.MqttDeviceName}_{topic.Name}"
                 };
 
                 string json = JsonSerializer.Serialize(p, MqttHelper.SerializeOptions);

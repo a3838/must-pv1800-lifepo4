@@ -14,4 +14,6 @@ public class Payload
     public string? DeviceClass { get; set; }
     [JsonPropertyName("state_class")]
     public string? StateClass { get; set; }
+    [JsonPropertyName("unique_id")]
+    public string? UniqueId { get; set; }
 }
